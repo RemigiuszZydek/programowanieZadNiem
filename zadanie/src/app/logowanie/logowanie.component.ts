@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-
+import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-logowanie',
   templateUrl: './logowanie.component.html',
   styleUrl: './logowanie.component.css',
-  standalone: true,
   imports: [FormsModule, CommonModule],
 })
 export class LogowanieComponent {
@@ -15,14 +15,17 @@ export class LogowanieComponent {
     password: '',
   };
 
+  constructor(private authService: AuthService, private router: Router) {}
+
   logowanie() {
     if (
       this.formData.username === 'przykladowyUzytkownik' &&
       this.formData.password === 'przykladoweHaslo'
     ) {
-      console.log('Zalogowano pomyslnie');
+      this.authService.login();
+      this.router.navigate(['/dashboard']);
     } else {
-      console.log('Blad logowania. Sprawdz dane');
+      console.log('Błąd logowania. Sprawdź dane');
     }
   }
 }
