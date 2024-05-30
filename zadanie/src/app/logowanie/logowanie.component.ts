@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-logowanie',
   templateUrl: './logowanie.component.html',
   styleUrl: './logowanie.component.css',
+  standalone: true,
+  imports: [FormsModule, CommonModule],
 })
 export class LogowanieComponent {
   formData = {
